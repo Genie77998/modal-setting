@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+
+<body>
+	<button id="test1">设置容器渲染1</button>
+	<button id="test2">设置容器渲染2</button>
+	<div id="app">页面加载中...</div> 
+	<script src="https://cdn.bootcss.com/react/15.3.1/react.min.js"></script>
+	<script src="https://cdn.bootcss.com/react/15.3.1/react-dom.min.js"></script>
+	<script type="text/javascript">
+	document.getElementById('test1').onclick = function(){
+		aladdinSetting({
+			data : {title : "ddd"},
+			el : 'app',
+			success : function(data){
+				console.log(data);
+			}
+		});
+	}
+
+	document.getElementById('test2').onclick = function(){
+		aladdinSetting({
+			data : {title : "cccc"},
+			el : 'app',
+			success : function(data){
+				console.log(data,1111111);
+			}
+		});
+	}
+	</script>
+</body>
+
+</html>
+
