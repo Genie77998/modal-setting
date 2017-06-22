@@ -33,7 +33,15 @@ const initData = (options,data) => {
 		_items.forEach( _v => {
 			if(["image"].indexOf(_v.type) > -1){
 				const imgArrData = [imageData()];
-				_data[v.itemKey][_v.itemKey] = _data[v.itemKey][_v.itemKey] || imgArrData;
+				let _imgData = [];
+				if(_data[v.itemKey][_v.itemKey] && _data[v.itemKey][_v.itemKey].length > 0){
+					_data[v.itemKey][_v.itemKey].forEach((val) => {
+						_imgData.push(Object.assign(imageData(),val));
+					})
+					_data[v.itemKey][_v.itemKey] = _imgData;
+				}else{
+					_data[v.itemKey][_v.itemKey] = imgArrData;
+				}
 			}else{
 				_data[v.itemKey][_v.itemKey] = _data[v.itemKey][_v.itemKey] || "";
 			}
