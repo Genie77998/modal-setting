@@ -10,9 +10,10 @@
 import React, { Component, PropTypes } from 'react'
 import { ItemBox , InputItem } from './pages'
 import RenderItem from './pages/renderItem'
-import { Button , Tabs , Modal } from 'antd';
+import { Button , Tabs } from 'antd';
+import CommonModal from './pages/commonModal'
 import { connect } from 'react-redux'
-import { upAllSettingData , upCompontId , upDataFields , hideModal , hidePreview } from './store/actions'
+import { upAllSettingData , upCompontId , upDataFields } from './store/actions'
 const TabPane = Tabs.TabPane;
 let readyEvent = document.createEvent("Events");
 readyEvent.initEvent('modalSettingUpdata', false, false);
@@ -80,9 +81,7 @@ class MainComponent extends Component {
 	}
 
 	render() {
-		const { dispatch } = this.props;
 		const { options , data } = this.props.state.settingData;
-		const { confirmVisible , confirTitle,confirContent,confirmOkFn,confirmNoFn , previewVisible , previewImage} = this.props.state.modalData;
 		return (
 			<div className="settingMainBox">
 				<Tabs defaultActiveKey="0" size="small">
@@ -97,33 +96,12 @@ class MainComponent extends Component {
 					:
 						null
 				}
-				<Modal
-		          title={confirTitle}
-		          visible={ confirmVisible } 
-		          onOk={ () => {
-		          	dispatch(hideModal())
-		          	confirmOkFn()
-		          }}
-		          onCancel={ ()=>{
-		          	dispatch(hideModal())
-		          	confirmNoFn()
-		          } }
-		          okText="确认"
-		          cancelText="取消"
-		        >
-		        	{ confirContent } 
-		        </Modal>
-
-
-		        <Modal visible={ previewVisible } footer={null} onCancel={()=>{dispatch(hidePreview())}}>
-		          <img alt="图片查看" style={{ width: '100%' }} src={previewImage} />
-		        </Modal>
 				
+				<CommonModal />
 			</div>
 		);
 	}
 }
-
 
 
 export default connect(

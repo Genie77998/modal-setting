@@ -15,11 +15,6 @@ import store from './store'
 import { imageData } from './lib/common'
 import { upAllSettingData , upCompontId } from './store/actions'
 let isRender = false;
-let container = null;
-
-/*let unsubscribe = store.subscribe(() =>
-  console.log(store.getState())
-)*/
 
 const noop = () => {}
 
@@ -74,7 +69,7 @@ const modalSetting = (option) => {
 	}
 	_hasInitData = initData(options,data)
 	if(!isRender){
-		container = ReactDom.render(
+		ReactDom.render(
 			<Provider store={store}>
 	    		<Main />
 	  		</Provider>,
