@@ -8,7 +8,7 @@
 
 
 import React, { Component, PropTypes } from 'react'
-import { InputItem , ColorPick , SelectItem , ImageUpload } from './index'
+import { InputItem , ColorPick , SelectItem , ImageUpload , CdnItem , RadioItem , CheckBoxItem , CompanyItem} from './index'
 
 export default class RenderItem extends Component {
 	constructor(props) {
@@ -23,21 +23,53 @@ export default class RenderItem extends Component {
 
 	render() {
 		const { type , defaultValue } = this.props;
-		if(["input","textarea","inputNum"].indexOf(type) > -1){
-			return (
-				<InputItem {...this.props} onChange={this.onChange} defaultValue={defaultValue} />
-			);
-		}else if(type == "color"){
-			return (
-				<ColorPick {...this.props} onChange={this.onChange} defaultValue={defaultValue} />
-			)
-		}else if(type == "select"){
-			return <SelectItem {...this.props} onChange={this.onChange} defaultValue={defaultValue} />
-		}else if(type == "image"){
-			return <ImageUpload {...this.props} onChange={this.onChange} defaultValue={defaultValue} />
-
-		}else{
-			return null
+		switch(type) {
+			case "input" :
+			case "textarea" :
+			case "inputNum" :
+				return (
+					<InputItem {...this.props} onChange={this.onChange} defaultValue={defaultValue} />
+				);
+				break;
+			case "color" :
+				return (
+					<ColorPick {...this.props} onChange={this.onChange} defaultValue={defaultValue} />
+				);
+				break;
+			case "select" :
+				return (
+					<SelectItem {...this.props} onChange={this.onChange} defaultValue={defaultValue} />
+				);
+				break;
+			case "image" :
+				return (
+					<ImageUpload {...this.props} onChange={this.onChange} defaultValue={defaultValue} />
+				);
+				break;
+			case "cdn" :
+				return (
+					<CdnItem {...this.props} onChange={this.onChange} defaultValue={defaultValue} />
+				);
+				break;
+			case "radio" :
+				return (
+					<RadioItem {...this.props} onChange={this.onChange} defaultValue={defaultValue} />
+				);
+				break;
+			case "checkbox" :
+				return (
+					<CheckBoxItem {...this.props} onChange={this.onChange} defaultValue={defaultValue} />
+				);
+				break;
+			case "company" :
+				return (
+					<CompanyItem {...this.props} onChange={this.onChange} defaultValue={defaultValue} />
+				);
+				break;
+				
+			default :
+				return null;
+				break;
 		}
 	}
 }

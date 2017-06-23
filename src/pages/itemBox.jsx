@@ -38,3 +38,7 @@ export default class ItemBox extends Component {
 		);
 	}
 }
+
+ItemBox.defaultProps = {
+	flex : true
+}

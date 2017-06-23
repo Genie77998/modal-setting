@@ -12,6 +12,7 @@ import React, { Component, PropTypes } from 'react'
 import { Upload, Icon, message , Modal } from 'antd'
 import { connect } from 'react-redux'
 import { showModal , showPreview } from './../store/actions'
+import { TntToast } from 'tnt-ui'
 import classNames from 'classnames'
 import CopyBtn from './copyBtn'
 import { imageData , uploadApi} from './../lib/common'
@@ -125,7 +126,6 @@ class ImageUpload extends Component {
 
 	//渲染图片
 	renderImgTpl = (val,key) => {
-		const { copyItem } = this.props;
 		const triggerCls = key === this.state.mouseEnterIndex ? "hoverItem" : "";
 		return (
 			<div className={classNames("avatar-uploader-box",triggerCls)}
@@ -178,26 +178,46 @@ class ImageUpload extends Component {
 	//新增一项
 	handlerCopy = () => {
 		let { defaultValue } = this.props;
-		defaultValue.push(imageData());
-		this.props.onChange(defaultValue);
+		let empty = 0;
+		defaultValue.forEach(v => {
+			if(v.src === ""){
+				empty++
+			}
+		});
+		if(empty > 0){
+			TntToast({
+				msg : "请先完善再添加"
+			})
+		}else{
+			defaultValue.push(imageData());
+			this.props.onChange(defaultValue);
+		}
 	}
 
 	render() {
-		const { copyItem , defaultValue } = this.props;
+		const { copyItem , defaultValue , copyMaxLength} = this.props;
 		const { onChange } = this;
+		const cpoyCls = copyItem ? "iscopy" : "";
 		return (
-			<div>
+			<div className={classNames("avatar-uploader-content",cpoyCls)}> 
 				{defaultValue.map(this.renderImgTpl)}
 				{
-					copyItem
+					copyItem && defaultValue.length < copyMaxLength
 					?
-						<CopyBtn text="新增一张图片" handlerClick={this.handlerCopy} />
+						<div className="avatar-uploader-box">
+							<CopyBtn text="新增一张图片" handlerClick={this.handlerCopy} />
+						</div>
 					:
 						null
 				}
 			</div>
 		);
 	}
+}
+
+ImageUpload.defaultProps = {
+	copyItem : false,
+	copyMaxLength : 4
 }
 
 

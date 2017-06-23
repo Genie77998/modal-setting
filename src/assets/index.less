@@ -1,145 +1,174 @@
 //提交按钮
 .submitBtn {
-    padding: 20px 0;
+    padding: 0;
+    position: absolute;
+    top: 5px;
+    right: 17px;
 }
 //设置
 .settingMainBox {
     word-break: break-all;
     word-wrap: break-word;
-    .ant-tabs{
-      overflow: visible
+    .ant-tabs {
+        overflow: visible
     }
 }
-
-
 //设置项flex
-.itemBox{
-  &.no-flex{
-    display: block;
-    .itemLabel{
-      width: 100%;
-      text-align:left;
+.itemBox {
+    &.no-flex {
+        display: block;
+        .itemLabel {
+            width: 100%;
+            text-align: left;
+            text-indent: 1em;
+        }
     }
-  }
-    padding-bottom:10px; 
+    padding: 10px;
     display: -webkit-box;
     display: -webkit-flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
     width:100%;
+    box-sizing: border-box;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 12px;
 }
-
-.itemLabel{
-  line-height: 32px;
-  height:32px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width:7em;
-  font-size:14px;
-  text-align:right;
-  padding-right:1em;
-} 
-.itemContent{
-  flex:1;
+.itemLabel {
+    color: blue;
+    line-height: 32px;
+    height: 32px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 7em;
+    font-size: 14px;
+    text-align: right;
+    padding-right: 1em;
 }
-
-
-
-//图片上传
-.avatar-uploader,
-.avatar-uploader-trigger,
-.avatar {
-  width: 100%;
-  height: 150px;
+.itemContent {
+    flex: 1;
 }
-.avatar-uploader-box{
-  z-index:1;
-  width: 100%;
-  padding: 5px 0;
-  position: relative;
-  &.hoverItem{
-    .previewImage{
+.avatar-uploader-content {
+   &.iscopy{
+    padding-bottom:10px;
+    &:after{
+      content: "";
+      visibility: hidden;
+      height: 0;
       display: block;
+      clear: both;
     }
-    .avatar-uploader-close{
-      display: block;
+    .avatar-uploader-box{
+      width:50%;
+      float: left;
+      box-sizing: border-box;
+      &:nth-child(odd){
+        padding-right:5px;
+        .avatar-uploader-close{
+          right:5px;
+        }
+      }
+      &:nth-child(even){
+        padding-left:5px;
+      }
     }
-  }
-}
-.avatar-uploader {
-  position: relative;
-  z-index:10;
-  display: block;
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
-  cursor: pointer;
-  .ant-upload-select{
-    width: 100%;
-    .ant-upload{
-      width:100%;
-      position: relative;
-      display: inline-block;
-      height:150px;
-      text-align: center;
+   }
+    //图片上传
+    .avatar-uploader, .avatar-uploader-trigger, .avatar {
+        width: 100%;
+        height: 150px;
     }
-  }
+    .avatar-uploader-box {
+        z-index: 1;
+        width: 100%;
+        padding: 5px 0;
+        position: relative;
+        &.hoverItem {
+            .previewImage {
+                display: block;
+            }
+            .avatar-uploader-close {
+                display: block;
+            }
+        }
+    }
+    .avatar-uploader {
+        position: relative;
+        z-index: 10;
+        display: block;
+        border: 1px dashed #d9d9d9;
+        border-radius: 6px;
+        cursor: pointer;
+        .ant-upload-select {
+            width: 100%;
+            .ant-upload {
+                width: 100%;
+                position: relative;
+                display: inline-block;
+                height: 150px;
+                text-align: center;
+            }
+        }
+    }
+    .previewImage {
+        cursor: pointer;
+        position: absolute;
+        display: none;
+        width: 30px;
+        height: 30px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 20;
+        background: rgba(0, 0, 0, 0.7);
+        text-align: center;
+        font-size: 18px;
+        line-height: 30px;
+        border-radius: 50%;
+        .previewImage-icon {
+            color: #108ee9;
+        }
+    }
+    .avatar-uploader-close {
+        position: absolute;
+        z-index: 20;
+        top: 5px;
+        right: 0;
+        cursor: pointer;
+        font-size: 15px;
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        text-align: center;
+        display: block;
+        background: #F44336;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 50%;
+    }
+    .avatar-uploader-trigger {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 28px;
+        color: #999;
+        position: relative;
+        z-index: 10;
+        &:before {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
 }
-.previewImage{
-  cursor: pointer;
-  position: absolute;
-  display: none;
-  width: 30px;
-  height:30px;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-50%);
-  z-index:20;
-  background: rgba(0,0,0,0.7);
-  text-align:center;
-  font-size: 18px;
-  line-height: 30px;
-  border-radius:50%;
-  .previewImage-icon{
-    color:#108ee9;
-  }
-}
-.avatar-uploader-close{
-  position: absolute;
-  z-index: 20;
-  top: 5px;
-  right: 0;
-  cursor: pointer;
-  font-size: 15px;
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
-  text-align: center;
-  display: block;
-  background: #F44336;
-  color: #fff;
-  font-weight: bold;
-  border-radius: 50%;
-}
-.avatar-uploader-trigger {
-  display: inline-block;
-  vertical-align: middle;
-  font-size: 28px;
-  color: #999;
-  position: relative;
-  z-index:10;
-  &:before{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-  }
-}
-
-
-
 //新增按钮
-.copyBtn{
-  padding: 10px 0;
-  text-align:center;
+.copyBtn {
+    padding: 10px 0;
+    text-align: center;
+}
+.cdnDelete {
+    cursor: pointer;
+    width: 18px;
+    color: red;
 }

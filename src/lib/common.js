@@ -3,7 +3,7 @@
 * @Date:   2017-06-21 20:14:44
 * @Email:  wj77998@qq.com
 * @Last Modified by:   wj77998
-* @Last Modified time: 2017-06-22 18:54:05
+* @Last Modified time: 2017-06-23 13:44:56
 */
 
 'use strict';
@@ -61,5 +61,13 @@ export const imageData = () => {
 	}
 }
 
+
+export const companyData = () => {
+	return {
+		value : "",
+		vunit : "",
+		additional : ""
+	}
+}
 
 export const uploadApi = "http://localhost:3600/upload/"

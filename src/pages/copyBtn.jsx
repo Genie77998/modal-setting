@@ -18,9 +18,9 @@ export default class CopyBtn extends Component {
 		super(props);
 	}
 	render() {
-		const { handlerClick , text } = this.props;
+		const { handlerClick , text , style} = this.props;
 		return (
-			<div className="copyBtn">
+			<div className="copyBtn" style={style}>
 				<Button type="primary" onClick={handlerClick}>{ text }</Button>
 			</div>
 		);
@@ -28,6 +28,7 @@ export default class CopyBtn extends Component {
 }
 
 CopyBtn.defaultProps = {
+	style : {},
 	handlerClick: noop,
 	text : "新增"
 }

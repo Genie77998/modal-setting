@@ -16,6 +16,7 @@ import "./assets/demo"
 
 document.addEventListener('modalSettingUpdata',function(v){
 	let _data = v.modalSettingData;
+	console.log("组件设置已更新");
 	console.log(_data);
 });
 
@@ -26,17 +27,9 @@ export default class App extends Component {
 	    }
 	}
 
-
 	handlerClick = () => {
 		modalSetting({
 			data : {
-				background : {
-					image : [
-						{
-							src : `http://localhost/${_img}`
-						}
-					]
-				}
 			},
 			options : [
 				{
@@ -47,6 +40,70 @@ export default class App extends Component {
 							title : "背景色",
 							itemKey : "color",
 							type : "color"
+						},
+						{
+							title : "高度",
+							itemKey : "height",
+							type : "company"
+						},
+						{
+							title : "水平位置",
+							placeholder : "偏移量",
+							itemKey : "horizontal-position",
+							type : "company",
+							flex : false,
+							vunitOptions : [{
+								key : "像素",
+								value : "px"
+							},{
+								key : "百分比",
+								value : "%"
+							}],
+							additionalOptions : [{
+								key : "左",
+								value : "left"
+							},{
+								key : "右",
+								value : "right"
+							}]
+						},
+
+						{
+							title : "是否固定",
+							itemKey : "isFixed",
+							placeholder : "滚动到元素位置后始终位于顶部",
+							flex : false,
+							isSelect : true,
+							type : "checkbox"
+						},
+						{
+							title : "是否都跳转到外部",
+							itemKey : "isOut",
+							type : "radio",
+							flex : false,
+							radioOptions : [
+								{
+									key : "否",
+									value : 0
+								},
+								{
+									key : "是",
+									value : 1
+								}
+							]
+						},
+						{
+							title : "CSS",
+							itemKey : "js",
+							flex : false,
+							placeholder : "CDN链接", 
+							type : "cdn"
+						},
+						{
+							title : "HTML",
+							itemKey : "html",
+							flex : false,
+							type : "textarea"
 						},
 						{
 							title : "背景图片",
@@ -116,7 +173,8 @@ export default class App extends Component {
 							itemKey : "icon",
 							flex : false,
 							type : "image",
-							copyItem : true
+							copyItem : true,
+							islink : true
 						},
 						{
 							title : "标题",
