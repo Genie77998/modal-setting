@@ -84,9 +84,16 @@ class MainComponent extends Component {
 		const { options , data } = this.props.state.settingData;
 		return (
 			<div className="settingMainBox">
-				<Tabs defaultActiveKey="0" type="card">
-				    { options.map(this.renderOptions) }
-				</Tabs>
+				{
+					options.length > 0
+					?
+						<Tabs defaultActiveKey="0" type="card">
+						    { options.map(this.renderOptions) }
+						</Tabs>
+					:
+						null
+				}
+				
 				{
 					options.length > 0
 					?

@@ -96,8 +96,11 @@ const modalSetting = (option) => {
   		);
 		isRender = true;
 	}
-	store.dispatch(upAllSettingData(_hasInitData.options,_hasInitData.data));
-	store.dispatch(upCompontId(componentId));
+	store.dispatch(upAllSettingData([],{}));
+	setTimeout(() => {
+		store.dispatch(upAllSettingData(_hasInitData.options,_hasInitData.data));
+		store.dispatch(upCompontId(componentId));
+	},50);
 	
 }
 

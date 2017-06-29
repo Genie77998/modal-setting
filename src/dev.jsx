@@ -14,8 +14,8 @@ const _img = require('./assets/pang.jpg');
 
 import "./assets/demo"
 
-document.addEventListener('modalSettingUpdata',function(v){
-	let _data = v.modalSettingData;
+document.addEventListener('modalSettingUpdata',function(e){
+	let _data = e.modalSettingData;
 	console.log("组件设置已更新");
 	console.log(_data);
 });
@@ -29,9 +29,20 @@ export default class App extends Component {
 
 	handlerClick = () => {
 		modalSetting({
-			data : {
-			},
 			options : [
+				{
+					itemTitle : "页面内容",
+					itemKey : "html",
+					items : [
+						{
+							title : "页面内容",
+							flex : false,
+							itemKey : "content",
+							type : "editor"
+						}
+					]
+					
+				},
 				{
 					itemTitle : "页面背景",
 					itemKey : "background",

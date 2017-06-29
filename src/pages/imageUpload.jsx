@@ -145,11 +145,15 @@ class ImageUpload extends Component {
 			        className="avatar-uploader"
 			        name="file"
 			        key={key}
+			        accept="image/*"
 			        showUploadList={false}
 			        action={uploadApi}
 			        beforeUpload={beforeUpload}
 			        onChange={(info) => {
 			        	this.handleChange(info,key)
+			        }}
+			        onError={()=>{
+    					message.error('图片上传失败！');
 			        }}
 			    >
 			        {

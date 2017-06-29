@@ -25,6 +25,9 @@ module.exports = {
         }, {
             test: /\.(jp[e]?g|png|gif|svg)$/,
             loader: 'url-loader?limit=8192'
+        },{
+            test: /\.(woff|ttf|eot)$/,
+            loader: 'url-loader?limit=2014&name=font/[name].[ext]'
         }]
     },
     postcss:[require('autoprefixer')({
@@ -34,7 +37,6 @@ module.exports = {
         extensions: ['', '.js', '.jsx', '.json', '.less'],
         //模块别名定义，方便后续直接引用别名，无须多写长长的地址
         alias: {
-        	
         }
     },
     babel: {
@@ -54,6 +56,9 @@ module.exports = {
         new webpack.DefinePlugin({
             // definePlugin 接收字符串插入到代码当中, 所以你需要的话可以写上 JS 的字符串
             '__DEBUG__': false,
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
         }),
     ]
 };

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <style>
+    	html{
+			text-size-adjust: 100%;
+		}
+		html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;}
+		html{
+			font-size:14px;
+		}
+		article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}
+		li{list-style:none;}
+		blockquote,q{quotes:none;}
+		blockquote:before,blockquote:after,q:before,q:after{content:none;}
+		a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent}
+		ins{background-color:#ff9;color:#000;text-decoration:none;}
+		mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold;}
+		del{text-decoration:line-through;}
+		table{border-collapse:collapse;border-spacing:0;}
+		input,select{vertical-align:middle;}
+		img {max-width:100%;touch-callout: none;}
+		a{user-select: none;tap-highlight-color: rgba(0, 0, 0, 0);text-decoration: none;}
+		input {outline: none;}
+		input::-webkit-input-placeholder {color:#ccc;}
+		.settingBtn{padding:10px 0 0 10px;}
+		.editor-edits{position:fixed;top:50%;right:10px;overflow:hidden;width:380px;max-width:100%;height:680px;margin-top:-340px;}
+		.editor-edits .editor-edits-body{overflow:hidden;height:680px;border:1px solid #dfdfdf;border-radius:2px;background:#fff;box-sizing: border-box;}
+		.editor-edits .edits-body-name{font-size:14px;line-height:35px;height:36px;padding:0 15px;color:#666;border-bottom:1px solid #dfdfdf;border-radius:2px 2px 0 0;background-color:#efefef;}
+		.editor-edits .edits-body-content{overflow-y:auto;overflow-x:hidden;width:100%;height:642px;padding:10px 0;box-sizing:border-box;}
+		@media screen and (max-width:640px){.editor-edits{position:relative;top:0;right:0;margin:30px auto;}}
+    </style>
+    <title>
+        <%=htmlWebpackPlugin.options.title %>
+    </title>
+</head>
+
+<body>
+    <div id="app">页面加载中...</div>
+    <script src="https://cdn.bootcss.com/react/15.3.1/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.3.1/react-dom.min.js"></script>
+    <script type="text/html" id="Settemplate">
+    	<div class="settingBtn">
+            <button type="button" class="ant-btn ant-btn-primary">
+                <span id="settingBtn">设置按钮</span>
+            </button>
+        </div>
+        <div class="editor-edits">
+            <div class="editor-edits-body">
+                <div class="edits-body-name">设置</div>
+                <div id="settingBody" class="edits-body-content"></div>
+            </div>
+        </div>
+    </script>
+    <script type="text/javascript">
+    	window.onload = function(){
+    		document.getElementById('app').innerHTML = document.getElementById('Settemplate').innerHTML;
+    		document.getElementById('settingBtn').onclick = function(){
+    			modalSetting({
+                    options : [
+                        {
+                            itemTitle : "页面内容",
+                            itemKey : "html",
+                            items : [
+                                {
+                                    title : "页面内容",
+                                    flex : false,
+                                    itemKey : "content",
+                                    type : "editor"
+                                }
+                            ]
+                            
+                        },
+                        {
+                            itemTitle : "页面背景",
+                            itemKey : "background",
+                            items : [
+                                {
+                                    title : "背景色",
+                                    itemKey : "color",
+                                    type : "color"
+                                },
+                                {
+                                    title : "高度",
+                                    itemKey : "height",
+                                    type : "company"
+                                },
+                                {
+                                    title : "水平位置",
+                                    placeholder : "偏移量",
+                                    itemKey : "horizontal-position",
+                                    type : "company",
+                                    flex : false,
+                                    vunitOptions : [{
+                                        key : "像素",
+                                        value : "px"
+                                    },{
+                                        key : "百分比",
+                                        value : "%"
+                                    }],
+                                    additionalOptions : [{
+                                        key : "左",
+                                        value : "left"
+                                    },{
+                                        key : "右",
+                                        value : "right"
+                                    }]
+                                },
+
+                                {
+                                    title : "是否固定",
+                                    itemKey : "isFixed",
+                                    placeholder : "滚动到元素位置后始终位于顶部",
+                                    flex : false,
+                                    isSelect : true,
+                                    type : "checkbox"
+                                },
+                                {
+                                    title : "是否都跳转到外部",
+                                    itemKey : "isOut",
+                                    type : "radio",
+                                    flex : false,
+                                    radioOptions : [
+                                        {
+                                            key : "否",
+                                            value : 0
+                                        },
+                                        {
+                                            key : "是",
+                                            value : 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    title : "CSS",
+                                    itemKey : "js",
+                                    flex : false,
+                                    placeholder : "CDN链接", 
+                                    type : "cdn"
+                                },
+                                {
+                                    title : "HTML",
+                                    itemKey : "html",
+                                    flex : false,
+                                    type : "textarea"
+                                },
+                                {
+                                    title : "背景图片",
+                                    flex : false,
+                                    itemKey : "image",
+                                    type : "image"
+                                },
+                                {
+                                    title : "填充方式",
+                                    itemKey : "repeat",
+                                    type : "select",
+                                    selectOptions : [
+                                        {
+                                            key : "平铺",
+                                            value : "repeat"
+                                        },
+                                        {
+                                            key : "横向平铺",
+                                            value : "repeat-x"
+                                        },
+                                        {
+                                            key : "纵向平铺",
+                                            value : "repeat-y"
+                                        },
+                                        {
+                                            key : "不平铺",
+                                            value : "no-repeat"
+                                        }
+                                    ]
+                                },
+                                {
+                                    title : "图像位置",
+                                    itemKey : "position",
+                                    type : "select",
+                                    selectOptions : [
+                                        {
+                                            key : "居中",
+                                            value : "center"
+                                        },
+                                        {
+                                            key : "左",
+                                            value : "left"
+                                        },
+                                        {
+                                            key : "右",
+                                            value : "right"
+                                        },
+                                        {
+                                            key : "上",
+                                            value : "top"
+                                        },
+                                        {
+                                            key : "下",
+                                            value : "bottom"
+                                        }
+                                    ]
+                                }
+                                
+                            ]
+                        },
+                        {
+                            itemTitle : "微信分享",
+                            itemKey : "share4wechat",
+                            items : [
+                                {
+                                    title : "ICON",
+                                    itemKey : "icon",
+                                    flex : false,
+                                    type : "image",
+                                    copyItem : true,
+                                    islink : true
+                                },
+                                {
+                                    title : "标题",
+                                    itemKey : "title",
+                                    type : "input",
+                                    placeholder : "请输入分享标题"
+                                },
+                                {
+                                    title : "描述",
+                                    itemKey : "desc",
+                                    type : "textarea",
+                                    placeholder : "请输入分享描述"
+                                },
+                                {
+                                    title : "链接",
+                                    itemKey : "link",
+                                    type : "input",
+                                    placeholder : "请输入分享链接"
+                                }
+                            ]
+                        }
+                    ],
+                    el : 'settingBody',
+                    componentId : new Date().getTime()
+                });
+    		}
+    	}
+
+
+
+        document.addEventListener('modalSettingUpdata',function(e){
+            let _data = e.modalSettingData;
+            console.log("组件设置已更新");
+            console.log(_data);
+        });
+    </script>
+</body>
+
+</html>
