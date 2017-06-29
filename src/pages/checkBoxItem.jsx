@@ -12,6 +12,9 @@ import React, { Component, PropTypes } from 'react'
 import { Checkbox } from 'antd';
 
 export default class CheckBoxItem extends Component {
+	static defaultProps = {
+		isSelect : false
+	}
 	constructor(props) {
 		super(props);
 		this.state = {};
@@ -50,6 +53,4 @@ export default class CheckBoxItem extends Component {
 }
 
 
-CheckBoxItem.defaultProps = {
-	isSelect : false
-}
+

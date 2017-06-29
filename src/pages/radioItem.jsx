@@ -13,6 +13,11 @@ import { Radio } from 'antd';
 const RadioGroup = Radio.Group;
 
 export default class RadioItem extends Component {
+	static defaultProps = {
+		isSelect : true,
+		radioOptions : []
+	}
+
 	constructor(props) {
 		super(props);
 		this.state = {};
@@ -64,7 +69,3 @@ export default class RadioItem extends Component {
 }
 
 
-RadioItem.defaultProps = {
-	isSelect : true,
-	radioOptions : []
-}

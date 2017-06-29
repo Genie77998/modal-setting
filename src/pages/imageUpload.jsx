@@ -33,6 +33,11 @@ function beforeUpload(file) {
 
 
 class ImageUpload extends Component {
+
+	static defaultProps = {
+		copyItem : false,
+		copyMaxLength : 4
+	}
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -218,12 +223,6 @@ class ImageUpload extends Component {
 		);
 	}
 }
-
-ImageUpload.defaultProps = {
-	copyItem : false,
-	copyMaxLength : 4
-}
-
 
 export default connect(
   state => ({ state }),

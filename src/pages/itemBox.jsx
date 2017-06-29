@@ -13,6 +13,10 @@ import classNames from 'classnames'
 import { Tooltip } from 'antd'
 
 export default class ItemBox extends Component {
+
+	static defaultProps = {
+		flex : true
+	}
 	constructor(props) {
 		super(props);
 		this.state = {}
@@ -39,6 +43,3 @@ export default class ItemBox extends Component {
 	}
 }
 
-ItemBox.defaultProps = {
-	flex : true
-}

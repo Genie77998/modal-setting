@@ -14,6 +14,13 @@ import { Button } from 'antd';
 
 const noop = () => {}
 export default class CopyBtn extends Component {
+
+	static defaultProps = {
+		style : {},
+		handlerClick: noop,
+		text : "新增"
+	}
+
 	constructor(props) {
 		super(props);
 	}
@@ -27,8 +34,4 @@ export default class CopyBtn extends Component {
 	}
 }
 
-CopyBtn.defaultProps = {
-	style : {},
-	handlerClick: noop,
-	text : "新增"
-}
+

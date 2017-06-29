@@ -8,10 +8,9 @@
 
 import React, { Component, PropTypes } from 'react'
 import ReactDOM ,  { render }  from 'react-dom'
-import modalSetting from './index'
+import modalSetting  from './index'
 import { Button } from 'antd';
-const _img = require('./assets/pang.jpg');
-
+const _img = require('./assets/pang.jpg');     
 import "./assets/demo"
 
 document.addEventListener('modalSettingUpdata',function(e){

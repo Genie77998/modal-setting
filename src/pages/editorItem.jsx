@@ -58,7 +58,6 @@ export default class EditorItem extends Component {
 							_upload.click();
 						}
 					}
-
 				}
 			},50);
 			if(_upload && !this.isupload){

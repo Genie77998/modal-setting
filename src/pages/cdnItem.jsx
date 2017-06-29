@@ -14,6 +14,12 @@ import { TntToast } from 'tnt-ui'
 import { Input , Icon } from 'antd';
 
 export default class Cdn extends Component {
+
+	static defaultProps = {
+		copyMaxLength : 4
+	}
+
+
 	constructor(props) {
 		super(props);
 		this.state = {};
@@ -105,6 +111,3 @@ export default class Cdn extends Component {
 }
 
 
-Cdn.defaultProps = {
-	copyMaxLength : 4
-}

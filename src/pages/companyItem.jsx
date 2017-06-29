@@ -14,6 +14,13 @@ import { TntToast } from 'tnt-ui'
 const Option = Select.Option;
 
 export default class CompanyItem extends Component {
+
+	static defaultProps = {
+		additionalOptions : [],
+		vunitOptions : []
+	}
+
+
 	constructor(props) {
 		super(props);
 		this.state = {};
@@ -114,7 +121,3 @@ export default class CompanyItem extends Component {
 	}
 }
 
-CompanyItem.defaultProps = {
-	additionalOptions : [],
-	vunitOptions : []
-}
