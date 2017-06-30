@@ -3,7 +3,7 @@
 * @Date:   2017-04-27 10:52:11
 * @Email:  wj77998@qq.com
 * @Last Modified by:   wj77998
-* @Last Modified time: 2017-06-30 10:13:34
+* @Last Modified time: 2017-06-30 10:47:28
 */
 
 'use strict';
@@ -39,7 +39,7 @@ config.plugins.push(new HtmlWebpackPlugin({
             removeComments: true,
             collapseWhitespace: true
         },
-        filename : path.join(__dirname,'..','static' ,'index.html')
+        filename : path.join(__dirname,'..','index.html')
     }));
 
 module.exports = config;

@@ -7,7 +7,7 @@ module.exports = {
         'main': []
     },
     output: {
-        path: path.join(__dirname, '..' , 'static'),
+        path: path.join(__dirname, '..'),
         publicPath: './',
         filename: '[name].js'
     },
