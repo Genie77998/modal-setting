@@ -67,8 +67,7 @@ const initData = (options,data) => {
 	}
 }
 
-
-export default function modalSetting(option){
+const renderSetting = (option) => {
 	const el = option.el;
 	const _el = document.getElementById(el);
 	const options = option.options || [];
@@ -102,16 +101,9 @@ export default function modalSetting(option){
 		store.dispatch(upAllSettingData(_hasInitData.options,_hasInitData.data));
 		store.dispatch(upCompontId(componentId));
 	},50);
-	
 }
 
 const version = "1.0";
-
-Object.assign(modalSetting,{
-	version
-});
-
-window.modalSetting = modalSetting;
-
-
-export { version }
+const render = renderSetting;
+export { version , render }
+   

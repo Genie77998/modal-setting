@@ -3,7 +3,7 @@
 * @Date:   2017-04-27 10:52:11
 * @Email:  wj77998@qq.com
 * @Last Modified by:   wj77998
-* @Last Modified time: 2017-06-29 14:42:01
+* @Last Modified time: 2017-06-30 10:13:34
 */
 
 'use strict';
@@ -14,6 +14,8 @@ let config = require('./webpack.base');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 config.externals =  {'react': 'React', 'react-dom': 'ReactDOM'};
 config.entry.main.push(path.join(__dirname, "..",'src/index.jsx'));
+config.output.library = "modalSetting";
+config.output.libraryTarget = "umd";
 config.plugins.push(new HtmlWebpackPlugin({ 
         //更具模版生成html
         /**
@@ -32,7 +34,7 @@ config.plugins.push(new HtmlWebpackPlugin({
          * 
          */
         title: '模版设置',
-        template: path.join(__dirname,'build','index.html'),
+        template: path.join(__dirname,'..','public','build','index.html'),
         minify: {
             removeComments: true,
             collapseWhitespace: true

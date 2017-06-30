@@ -8,7 +8,7 @@
 
 import React, { Component, PropTypes } from 'react'
 import ReactDOM ,  { render }  from 'react-dom'
-import modalSetting  from './index'
+import {render as modalRender}  from './index'
 import { Button } from 'antd';
 const _img = require('./assets/pang.jpg');     
 import "./assets/demo"
@@ -27,7 +27,7 @@ export default class App extends Component {
 	}
 
 	handlerClick = () => {
-		modalSetting({
+		modalRender({
 			options : [
 				{
 					itemTitle : "页面内容",

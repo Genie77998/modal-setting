@@ -4,7 +4,7 @@
   "description": "模版设置",
   "scripts": {
     "start": "node ./webpack/webpack.dev.js",
-    "build": "webpack --config webpack/webpack.prod.js -p"
+    "build": "webpack --config webpack/webpack.prod.js"
   },
   "repository": {},
   "email": "wj77998@qq.com",

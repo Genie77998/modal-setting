@@ -11,7 +11,7 @@
     
     渲染保存模版
 
-        modalSetting({
+        modalSetting.render({
             options : [],//组件设置项
             data : {}, //默认数据
             el : 'settingBody',//渲染组件设置的容器id
@@ -20,6 +20,8 @@
 
     监听保存设置
         document.addEventListener('modalSettingUpdata',function(e){
-            let _data = e.modalSettingData;
+            var _data = e.modalSettingData;
             console.log(_data);
         });
+
+# [demo](http://wj77998.coding.me/modal-setting)

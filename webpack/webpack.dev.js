@@ -3,7 +3,7 @@
 * @Date:   2017-04-27 10:52:11
 * @Email:  wj77998@qq.com
 * @Last Modified by:   wj77998
-* @Last Modified time: 2017-06-22 18:53:51
+* @Last Modified time: 2017-06-30 09:34:52
 */
 
 'use strict';
@@ -36,7 +36,7 @@ const myserver = () => {
         inline:             true,
         progress:           true,
         historyApiFallback : true,
-        contentBase: path.join(__dirname,'dev')
+        contentBase: path.join(__dirname,'..','public','dev')
     })
     server.listen(PORT, function(err) {
         if (err) {

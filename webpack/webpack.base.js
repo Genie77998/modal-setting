@@ -9,7 +9,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, '..' , 'static'),
         publicPath: './',
-        filename: '[name]_[chunkhash:5].js'
+        filename: '[name].js'
     },
     module: {
         loaders: [{
