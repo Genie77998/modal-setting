@@ -3,7 +3,7 @@
 * @Date:   2017-04-27 10:52:11
 * @Email:  wj77998@qq.com
 * @Last Modified by:   wj77998
-* @Last Modified time: 2017-06-30 10:50:13
+* @Last Modified time: 2017-07-03 14:41:30
 */
 
 'use strict';
@@ -14,6 +14,8 @@ let config = require('./webpack.base');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 config.externals =  {'react': 'React', 'react-dom': 'ReactDOM'};
 config.entry.main.push(path.join(__dirname, "..",'src/index.jsx'));
+config.devtool = 'hidden-source-map';
+//# sourceMappingURL=main.js.map
 config.output.library = "modalSetting";
 config.output.libraryTarget = "umd";
 config.plugins.push(new HtmlWebpackPlugin({ 

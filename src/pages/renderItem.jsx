@@ -8,7 +8,7 @@
 
 
 import React, { Component, PropTypes } from 'react'
-import { InputItem ,EditorItem , ColorPick , SelectItem , ImageUpload , CdnItem , RadioItem , CheckBoxItem , CompanyItem} from './index'
+import { InputItem ,EditorItem , ColorPick , SelectItem , ImageUpload , CdnItem , RadioItem , CheckBoxItem , CompanyItem , NavItem } from './index'
 
 export default class RenderItem extends Component {
 	constructor(props) {
@@ -55,6 +55,12 @@ export default class RenderItem extends Component {
 				return (
 					<RadioItem {...this.props} onChange={this.onChange} defaultValue={defaultValue} />
 				);
+				break;
+			case "nav" :
+				return (
+					<NavItem {...this.props} onChange={this.onChange} defaultValue={defaultValue} />
+				);
+				
 				break;
 			case "checkbox" :
 				return (

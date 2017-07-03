@@ -13,6 +13,11 @@ import React, { Component, PropTypes } from 'react'
 import { Input , InputNumber } from 'antd';
 
 export default class InputItem extends Component {
+
+	static defaultProps = {
+		maxLength : null
+	}
+
 	constructor(props) {
 		super(props);
 		this.state = {};
@@ -24,7 +29,7 @@ export default class InputItem extends Component {
 	}
 
 	render() {
-		const { placeholder , type , defaultValue , min , max } = this.props;
+		const { placeholder , type , defaultValue , maxLength , ...other } = this.props;
 		const { onChange } = this;
 		return (
 			<div>
@@ -32,13 +37,13 @@ export default class InputItem extends Component {
 					type == "inputNum"
 
 					?
-						<InputNumber size="large" placeholder={ placeholder } value={defaultValue} onChange={onChange} />
+						<InputNumber size="large" {...other} placeholder={ placeholder } value={defaultValue} onChange={onChange} />
 					: 
 						type == "textarea"
 							?
-								<Input type="textarea" placeholder={ placeholder } value={defaultValue} autosize={{ minRows: 2, maxRows: 6 }} onChange={onChange} />
+								<Input type="textarea" {...other} placeholder={ placeholder } value={defaultValue} autosize={{ minRows: 2, maxRows: 6 }} onChange={onChange} />
 							:
-								<Input size="large" placeholder={ placeholder } value={defaultValue} onChange={onChange} />
+								<Input size="large" {...other} placeholder={ placeholder } maxLength={maxLength} value={defaultValue} onChange={onChange} />
 				}
 			</div>
 		);

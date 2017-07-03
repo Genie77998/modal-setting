@@ -30,6 +30,20 @@ export default class App extends Component {
 		modalRender({
 			options : [
 				{
+					itemTitle : "导航内容",  
+					itemKey : "navs",
+					items : [
+						{
+							title : "导航类目",
+							flex : false,
+							itemKey : "nav",
+							placeholder : "请输入导航文字",
+							type : "nav",
+							copyMaxLength : 5,
+						}
+					]
+				},
+				{
 					itemTitle : "页面内容",
 					itemKey : "html",
 					items : [
@@ -40,7 +54,6 @@ export default class App extends Component {
 							type : "editor"
 						}
 					]
-					
 				},
 				{
 					itemTitle : "页面背景",

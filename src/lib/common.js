@@ -3,7 +3,7 @@
 * @Date:   2017-06-21 20:14:44
 * @Email:  wj77998@qq.com
 * @Last Modified by:   wj77998
-* @Last Modified time: 2017-06-23 13:44:56
+* @Last Modified time: 2017-06-30 11:17:44
 */
 
 'use strict';
@@ -61,6 +61,14 @@ export const imageData = () => {
 	}
 }
 
+export const navData = () => {
+  return {
+    text : "",
+    linkValue : "",
+    linkType : "",
+    linkText : ""
+  }
+}
 
 export const companyData = () => {
 	return {

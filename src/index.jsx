@@ -12,7 +12,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import Main from './main'
 import store from './store'
-import { imageData , companyData } from './lib/common'
+import { imageData , companyData , navData } from './lib/common'
 import { upAllSettingData , upCompontId } from './store/actions'
 let isRender = false;
 
@@ -39,6 +39,17 @@ const initData = (options,data) => {
 					_data[v.itemKey][_v.itemKey] = _imgData;
 				}else{
 					_data[v.itemKey][_v.itemKey] = imgArrData;
+				}
+			}else if(_v.type == "nav"){
+				let _navArrData = [navData()];
+				let _navData = [];
+				if(_data[v.itemKey][_v.itemKey] && _data[v.itemKey][_v.itemKey].length > 0){
+					_data[v.itemKey][_v.itemKey].forEach((val) => {
+						_navData.push(Object.assign(navData(),val));
+					})
+					_data[v.itemKey][_v.itemKey] = _navData;
+				}else{
+					_data[v.itemKey][_v.itemKey] = _navArrData;
 				}
 			}else if(_v.type == "cdn"){
 				let _cdn = [];

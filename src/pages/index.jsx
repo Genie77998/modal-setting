@@ -28,3 +28,6 @@ export { default as CheckBoxItem } from './checkBoxItem';
 export { default as CompanyItem } from './companyItem';
 
 export { default as EditorItem } from './editorItem';
+
+export { default as NavItem } from './navItem';
+
