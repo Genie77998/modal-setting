@@ -9,7 +9,9 @@ module.exports = {
     output: {
         path: path.join(__dirname, '..' , 'static'),
         publicPath: './',
-        filename: '[name].js'
+        filename: '[name].js',
+        library : "modalSetting",
+        libraryTarget : "umd"
     },
     module: {
         loaders: [{
@@ -52,13 +54,6 @@ module.exports = {
         }),
         new webpack.ProvidePlugin({
             //全局调用类库
-        }),
-        new webpack.DefinePlugin({
-            // definePlugin 接收字符串插入到代码当中, 所以你需要的话可以写上 JS 的字符串
-            '__DEBUG__': false,
-            'process.env': {
-                'NODE_ENV': JSON.stringify('production')
-            }
-        }),
+        })
     ]
 };

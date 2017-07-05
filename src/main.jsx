@@ -75,7 +75,7 @@ class MainComponent extends Component {
 				key={index}
 				{...value}
 			>
-				<RenderItem {...value} parentItemKey={itemKey} itemChange={ this.itemChange } defaultValue={defaultValue}/>
+				<RenderItem {...this.props} {...value} parentItemKey={itemKey} itemChange={ this.itemChange } defaultValue={defaultValue}/>
 			</ItemBox>
 		)
 	}
@@ -104,7 +104,7 @@ class MainComponent extends Component {
 						null
 				}
 				
-				<CommonModal />
+				<CommonModal {...this.props} />
 			</div>
 		);
 	}

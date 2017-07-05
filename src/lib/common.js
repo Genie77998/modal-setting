@@ -3,10 +3,28 @@
 * @Date:   2017-06-21 20:14:44
 * @Email:  wj77998@qq.com
 * @Last Modified by:   wj77998
-* @Last Modified time: 2017-06-30 11:17:44
+* @Last Modified time: 2017-07-04 16:36:48
 */
 
 'use strict';
+
+/*if(!__DEBUG__){
+  (function a() {
+      try {
+          (function b(i) {
+              if (("" + i / i).length !== 1 || i % 20 === 0) {
+                  (function() {}).constructor("debugger")();
+              } else {
+                  debugger;
+              }
+              b(++i);
+          })(0);
+      } catch (e) {
+          setTimeout(a, 5e3);
+      }
+  })();
+}*/
+
 
 (function(){
     -[1,]||(function(){
@@ -79,3 +97,4 @@ export const companyData = () => {
 }
 
 export const uploadApi = "http://localhost:3600/upload/"
+

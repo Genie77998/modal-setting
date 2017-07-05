@@ -3,46 +3,47 @@
 * @Date:   2017-06-20 16:40:17
 * @Email:  wj77998@qq.com
 * @Last Modified by:   wj77998
-* @Last Modified time: 2017-06-20 16:41:21
+* @Last Modified time: 2017-07-04 18:05:11
 */
 
 'use strict';
 
 import React, { Component, PropTypes } from 'react'
-import { Upload, Icon, message , Modal } from 'antd'
-import { connect } from 'react-redux'
-import { showModal , showPreview } from './../store/actions'
+import { Upload, Icon , Modal } from 'antd'
+import { showModal , showPreview , setMsgTip } from './../store/actions'
 import { TntToast } from 'tnt-ui'
 import classNames from 'classnames'
 import CopyBtn from './copyBtn'
 import { imageData , uploadApi} from './../lib/common'
-
-function beforeUpload(file) {
-	
-  const fileType = ["image/gif","image/png","image/jpeg"]
-  const isJPG = fileType.indexOf(file.type) > -1;
-  if (!isJPG) {
-    message.error('只能上传图片文件');
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error('图片不能超过2M');
-  }
-  return isJPG && isLt2M;
-}
+import LinkItem from './linkItem'
 
 
-class ImageUpload extends Component {
+export default class extends Component {
 
 	static defaultProps = {
 		copyItem : false,
-		copyMaxLength : 4
+		copyMaxLength : 4,
+		showLinkItem : false
 	}
 	constructor(props) {
 		super(props);
 		this.state = {
       		mouseEnterIndex : -1
 		}
+	}
+
+	beforeUpload = file => {
+	
+	  const fileType = ["image/gif","image/png","image/jpeg"]
+	  const isJPG = fileType.indexOf(file.type) > -1;
+	  if (!isJPG) {
+		this.props.dispatch(setMsgTip("只能上传图片文件","error"));
+	  }
+	  const isLt2M = file.size / 1024 / 1024 < 2;
+	  if (!isLt2M) {
+		this.props.dispatch(setMsgTip("图片不能超过2M","error"));
+	  }
+	  return isJPG && isLt2M;
 	}
 
 	//显示图片
@@ -114,13 +115,19 @@ class ImageUpload extends Component {
 	    		_img.onerror = () => {
 	    			imageUrl[key].src = info.file.response.path;
 	    			this.props.onChange(imageUrl);
-	    			message.error('获取图片宽高失败！');
+	    			this.props.dispatch(setMsgTip("获取图片宽高失败！","error"));
 	    			_img = null;
 	    		}
 	    	}else{
-	    		message.error('图片上传失败！');
+	    		this.props.dispatch(setMsgTip("图片上传失败！","error"));
 	    	}
 	    }
+	}
+
+	linkChange = (value , key) => {
+		let { defaultValue } = this.props;
+		defaultValue[key] = Object.assign({},defaultValue[key],value);
+		this.props.onChange(defaultValue);
 	}
 
 	setMouseEnter = (val) =>{
@@ -132,6 +139,7 @@ class ImageUpload extends Component {
 	//渲染图片
 	renderImgTpl = (val,key) => {
 		const triggerCls = key === this.state.mouseEnterIndex ? "hoverItem" : "";
+		const { showLinkItem } = this.props;
 		return (
 			<div className={classNames("avatar-uploader-box",triggerCls)}
 				onMouseOver={
@@ -153,12 +161,12 @@ class ImageUpload extends Component {
 			        accept="image/*"
 			        showUploadList={false}
 			        action={uploadApi}
-			        beforeUpload={beforeUpload}
+			        beforeUpload={this.beforeUpload}
 			        onChange={(info) => {
 			        	this.handleChange(info,key)
 			        }}
 			        onError={()=>{
-    					message.error('图片上传失败！');
+			        	this.props.dispatch(setMsgTip("图片上传失败！","error"));
 			        }}
 			    >
 			        {
@@ -169,6 +177,14 @@ class ImageUpload extends Component {
 			            <Icon type="plus" className="avatar-uploader-trigger" />
 			        }
 			    </Upload>
+			    {
+			    	showLinkItem 
+			    	?
+			    		<LinkItem defaultValue={val} linkStyle={{paddingTop:5}} itemKey={key} linkChange={this.linkChange}/>
+			    	:
+			    		null
+			    }
+			    
 			    {
 		        	val.src ?
 		        		<div className="previewImage" onClick={() => {this.handlePreview(val)}}><Icon type="eye" className="previewImage-icon" /></div>
@@ -223,10 +239,3 @@ class ImageUpload extends Component {
 		);
 	}
 }
-
-export default connect(
-  state => ({ state }),
-  dispatch => ({
-    dispatch
-})
-)(ImageUpload);

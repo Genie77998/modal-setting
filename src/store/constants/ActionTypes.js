@@ -3,7 +3,7 @@
 * @Date:   2017-06-22 09:45:48
 * @Email:  wj77998@qq.com
 * @Last Modified by:   wj77998
-* @Last Modified time: 2017-06-22 18:51:56
+* @Last Modified time: 2017-07-04 12:00:42
 */
 
 'use strict';
@@ -29,3 +29,6 @@ export const SHOW_PREVIEW = "SHOW_PREVIEW"
 
 //隐藏查看图片
 export const HIDE_PREVIEW = "HIDE_PREVIEW"
+
+//消息提示
+export const SET_MSG_TIP = "SET_MSG_TIP";

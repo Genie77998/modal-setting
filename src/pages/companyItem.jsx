@@ -3,7 +3,7 @@
 * @Date:   2017-06-20 16:40:17
 * @Email:  wj77998@qq.com
 * @Last Modified by:   wj77998
-* @Last Modified time: 2017-06-20 16:41:21
+* @Last Modified time: 2017-07-04 17:58:24
 */
 
 'use strict';
@@ -26,13 +26,16 @@ export default class CompanyItem extends Component {
 		this.state = {};
 	}
 
+
+
 	onChange = (e) => {
+		
 		let { defaultValue } = this.props; 
 		let val = e.target.value;
-		if(isNaN(val)){
-			val = "";
-			TntToast({msg : '只能输入数字'});
-		}
+		if(!/^(-)?(\d+)?(\.)?(\d+)?$/g.test(val)){
+			// TntToast({msg : '只能输入数字'});
+			return;
+		} 
 		defaultValue.value = val;
 		this.props.onChange(defaultValue);
 	}

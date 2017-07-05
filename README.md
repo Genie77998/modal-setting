@@ -25,3 +25,6 @@
         });
 
 # [demo](http://wj77998.coding.me/modal-setting)
+
+> 说明
+    ui组件使用的是ant design

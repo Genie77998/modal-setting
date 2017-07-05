@@ -3,7 +3,7 @@
 * @Date:   2017-06-22 09:52:15
 * @Email:  wj77998@qq.com
 * @Last Modified by:   wj77998
-* @Last Modified time: 2017-06-22 15:59:43
+* @Last Modified time: 2017-07-04 12:06:20
 */
 
 'use strict';
@@ -45,3 +45,11 @@ export const showPreview = (previewImage) => ({
 export const hidePreview = () => ({
 	type: types.HIDE_PREVIEW
 });
+
+
+export const setMsgTip = (msgContent="",msgType="success" ) =>{
+	return {
+		type : types.SET_MSG_TIP,
+		msgContent,msgType
+	}
+}

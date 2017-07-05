@@ -3,7 +3,7 @@
 * @Date:   2017-04-27 10:52:11
 * @Email:  wj77998@qq.com
 * @Last Modified by:   wj77998
-* @Last Modified time: 2017-06-30 09:34:52
+* @Last Modified time: 2017-07-04 16:19:44
 */
 
 'use strict';
@@ -16,6 +16,13 @@ const exec = require('child_process').exec;
 config.entry.main.push(path.join(__dirname, "..",'src/dev.jsx'));
 config.output.filename = '[name].js';
 config.devtool = 'eval-source-map';
+config.plugins.push(new webpack.DefinePlugin({
+    // definePlugin 接收字符串插入到代码当中, 所以你需要的话可以写上 JS 的字符串
+    '__DEBUG__': true,
+    'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+    }
+}));
 config.plugins.push(new webpack.NoErrorsPlugin());//允许错误不打断程序
 config.plugins.push(new webpack.HotModuleReplacementPlugin()); //热更新  代码更新后浏览器自动刷新
 config.output.publicPath = '';

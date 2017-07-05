@@ -3,7 +3,7 @@
 * @Date:   2017-06-20 16:40:17
 * @Email:  wj77998@qq.com
 * @Last Modified by:   wj77998
-* @Last Modified time: 2017-06-20 16:41:21
+* @Last Modified time: 2017-07-04 14:57:15
 */
 
 'use strict';
@@ -53,6 +53,12 @@ export default class NavItem extends Component {
 		this.props.onChange(defaultValue);
 	}
 
+	linkChange = (value , key) => {
+		let { defaultValue } = this.props;
+		defaultValue[key] = Object.assign({},defaultValue[key],value);
+		this.props.onChange(defaultValue);
+	}
+
 	//新增一项
 	handlerCopy = () => {
 		let { defaultValue } = this.props;
@@ -98,7 +104,7 @@ export default class NavItem extends Component {
 										this.onChange(e.target.value,k,'text')
 									}} 
 								/>
-								<LinkItem defaultValue={v} linkStyle={{paddingTop:5}}/>
+								<LinkItem defaultValue={v} linkStyle={{paddingTop:5}} itemKey={k} linkChange={this.linkChange}/>
 							</div>
 						)
 						

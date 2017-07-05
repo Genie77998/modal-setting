@@ -3,12 +3,12 @@
 * @Date:   2017-03-02 19:09:56
 * @Email:  wj77998@qq.com
 * @Last Modified by:   wj77998
-* @Last Modified time: 2017-06-19 15:55:48
+* @Last Modified time: 2017-07-05 15:58:35
 */
 
 import React, { Component, PropTypes } from 'react'
 import ReactDOM ,  { render }  from 'react-dom'
-import {render as modalRender}  from './index'
+import * as modalRender  from './index'
 import { Button } from 'antd';
 const _img = require('./assets/pang.jpg');     
 import "./assets/demo"
@@ -19,7 +19,7 @@ document.addEventListener('modalSettingUpdata',function(e){
 	console.log(_data);
 });
 
-export default class App extends Component {
+class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -27,7 +27,19 @@ export default class App extends Component {
 	}
 
 	handlerClick = () => {
-		modalRender({
+		modalRender.render({
+			data : {
+				navs: {
+			        nav: [
+			          	{
+				            text: '2222',
+				            linkValue: 'page',
+				            linkType: 'site',
+				            linkText: '新页面'
+			          	}
+			        ]
+		      	}
+			},
 			options : [
 				{
 					itemTitle : "导航内容",  
@@ -132,7 +144,8 @@ export default class App extends Component {
 							title : "背景图片",
 							flex : false,
 							itemKey : "image",
-							type : "image"
+							type : "image",
+							showLinkItem : true
 						},
 						{
 							title : "填充方式",
@@ -243,10 +256,11 @@ export default class App extends Component {
 }
 
 
-
-
 render( 
 	<App />
 	,
     document.getElementById('app')
 )
+
+
+

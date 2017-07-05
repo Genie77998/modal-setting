@@ -11,22 +11,11 @@
 import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import RichTextEditor from 'react-rte-image';
-import { Upload, message } from 'antd'
+import { setMsgTip } from './../store/actions'
+import { Upload } from 'antd'
 import { uploadApi } from './../lib/common'
 
 
-function beforeUpload(file) {
-  const fileType = ["image/gif","image/png","image/jpeg"]
-  const isJPG = fileType.indexOf(file.type) > -1;
-  if (!isJPG) {
-    message.error('只能上传图片文件');
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error('图片不能超过2M');
-  }
-  return isJPG && isLt2M;
-}
 
 export default class EditorItem extends Component {
 	constructor(props) {
@@ -38,6 +27,18 @@ export default class EditorItem extends Component {
 		};
 	}
 
+	beforeUpload = file => {
+	  const fileType = ["image/gif","image/png","image/jpeg"]
+	  const isJPG = fileType.indexOf(file.type) > -1;
+	  if (!isJPG) {
+	  	this.props.dispatch(setMsgTip("只能上传图片文件","error"));
+	  }
+	  const isLt2M = file.size / 1024 / 1024 < 2;
+	  if (!isLt2M) {
+	  	this.props.dispatch(setMsgTip("图片不能超过2M","error"));
+	  }
+	  return isJPG && isLt2M;
+	}
 	_onDocumentInput = (event: Object) => {
 		let _target = event.target;
 		let _upload = this.refs.uploadImg;
@@ -104,7 +105,7 @@ export default class EditorItem extends Component {
 	    		}
 	    	}else{
 	    		this.isupload = false;
-	    		message.error('图片上传失败！');
+	    		this.props.dispatch(setMsgTip("图片上传失败！","error"));
 	    	}
 	    }
 	}
@@ -139,11 +140,11 @@ export default class EditorItem extends Component {
 				        accept="image/*"
 				        showUploadList={false}
 				        action={uploadApi}
-				        beforeUpload={beforeUpload}
+				        beforeUpload={this.beforeUpload}
 				        onChange={this.handleChange}
 				        onError={()=>{
 				        	this.isupload = false;
-	    					message.error('图片上传失败！');
+	    					this.props.dispatch(setMsgTip("图片上传失败！","error"));
 				        }}
 				    >
 				    	<div ref="uploadImg" >click me!</div>

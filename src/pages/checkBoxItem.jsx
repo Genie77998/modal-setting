@@ -47,6 +47,7 @@ export default class CheckBoxItem extends Component {
 		}
 		const { onChange } = this; 
 		return (
+
 			<Checkbox onChange={onChange} checked={_def} >{ placeholder }</Checkbox>
 		);
 	}

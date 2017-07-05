@@ -3,17 +3,18 @@
 * @Date:   2017-03-02 19:09:56
 * @Email:  wj77998@qq.com
 * @Last Modified by:   wj77998
-* @Last Modified time: 2017-06-19 15:55:48
+* @Last Modified time: 2017-07-04 16:18:21
 */
      
 import React from 'react'
 import ReactDom  from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
+import { message } from 'antd';
 import Main from './main'
 import store from './store'
 import { imageData , companyData , navData } from './lib/common'
-import { upAllSettingData , upCompontId } from './store/actions'
+import { upAllSettingData , upCompontId , setMsgTip } from './store/actions'
 let isRender = false;
 
 const noop = () => {}
@@ -114,7 +115,33 @@ const renderSetting = (option) => {
 	},50);
 }
 
+message.config({
+  top: store.getState().msgTip.top,
+  duration: store.getState().msgTip.duration,
+});
+
 const version = "1.0";
 const render = renderSetting;
-export { version , render }
+const showMsg = (text,type) => { 
+	if(isRender){
+		store.dispatch(setMsgTip(text,type));
+	}else{
+		message.destroy();
+		switch(type){
+			case "warn" :
+				message.warn(text)
+				break;
+			case "error" :
+				message.error(text)
+				break;
+			case "info" :
+				message.info(text)
+				break;
+			default :
+			message.success(text)
+		}
+	}
+	
+}
+export { version , render , showMsg }
    
