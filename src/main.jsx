@@ -3,7 +3,7 @@
 * @Date:   2017-03-02 19:09:56
 * @Email:  wj77998@qq.com
 * @Last Modified by:   wj77998
-* @Last Modified time: 2017-06-19 15:55:48
+* @Last Modified time: 2017-07-05 16:09:14
 */
 
 
@@ -13,6 +13,7 @@ import RenderItem from './pages/renderItem'
 import { Button , Tabs } from 'antd';
 import CommonModal from './pages/commonModal'
 import { connect } from 'react-redux'
+import { showMsg } from './index'
 import { upAllSettingData , upCompontId , upDataFields } from './store/actions'
 const TabPane = Tabs.TabPane;
 let readyEvent = document.createEvent("Events");
@@ -42,6 +43,7 @@ class MainComponent extends Component {
 		delete _data.options;
 		readyEvent.modalSettingData = _data;
 		document.dispatchEvent(readyEvent);
+		showMsg("保存成功,请在控制台查看数据");
 	}
 
 	//渲染外层模版

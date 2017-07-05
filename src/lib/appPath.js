@@ -3,7 +3,7 @@
  * @Date:   2017-07-04 18:21:28
  * @Email:  wj77998@qq.com
  * @Last Modified by:   wj77998
- * @Last Modified time: 2017-07-05 15:57:23
+ * @Last Modified time: 2017-07-05 16:07:25
  */
 
 'use strict';
@@ -13,9 +13,6 @@ export default [{
     value: "lt",
     children: [
 	    {
-	        label: '查找轮胎',
-	        value: 'ah.callapp(["toTire"])&&https://m.qccr.com/searchTire'
-	    }, {
 	        label: '马牌轮胎',
 	        value: 'ah.callapp([["tireBrandList","209"]])'
 	    }, {
