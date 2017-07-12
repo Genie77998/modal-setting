@@ -3,7 +3,7 @@
 * @Date:   2017-03-02 19:09:56
 * @Email:  wj77998@qq.com
 * @Last Modified by:   wj77998
-* @Last Modified time: 2017-07-04 16:18:21
+* @Last Modified time: 2017-07-05 16:39:36
 */
      
 import React from 'react'
@@ -81,7 +81,7 @@ const initData = (options,data) => {
 
 const renderSetting = (option) => {
 	const el = option.el;
-	const _el = document.getElementById(el);
+	let _el = null;
 	const options = option.options || [];
 	const data = option.data || {};
 	const componentId = option.componentId || "";
@@ -98,6 +98,7 @@ const renderSetting = (option) => {
 		throw new TypeError('模版ID不能为空');
 		return;
 	}
+	_el = document.getElementById(el);
 	_hasInitData = initData(options,data)
 	if(!isRender){
 		ReactDom.render(
